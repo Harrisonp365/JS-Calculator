@@ -2,11 +2,15 @@
   font-family: "Digital";
   src: url("../../Resources/digital-7.regular.ttf");
 }
-body {
+.body {
   margin-top: 5rem;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.body--red {
+  color: blueviolet;
+  background-color: brown;
 }
 
 .calculator {
