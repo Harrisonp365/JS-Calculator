@@ -1,60 +1,123 @@
 const previousValue = document.querySelector(".previousVal");
 const currentValue = document.querySelector(".currentVal");
 
-const clear = document.querySelector(".clear");
-const allClear = document.querySelector(".allClear");
-const equals = document.querySelector(".equals");
-
 // I feel like class makes sense for all the functions needed
 class Calculator {
-    constructor() {
-        
+  //Assignment of constructor params
+  constructor(previousValue, currentValue) {
+    this.previousValue = previousValue;
+    this.currentValue = currentValue;
+    this.allClear();
+  }
+
+  allClear() {
+    this.currentNum = "";
+    this.previousNum = "";
+    this.operator = undefined;
+  }
+
+  clear() {
+    this.currentNum = "";
+  }
+
+  appendNum(num) {
+    //check there is no more than one decimal point in the num
+    if (num === "." && this.currentNum.includes(".")) return;
+    //concat numbers together to make numbers greater than 9
+    this.currentNum = this.currentNum.toString() + num.toString();
+  }
+
+  opperation(operator) {
+    if (this.currentNum === "") return;
+    if (this.previousNum !== "") {
+      this.total();
+    }
+    //swap current operation to the top in order to start next operation
+    this.operator = operator;
+    this.previousNum = this.currentNum;
+    this.currentNum = ""; //clear the lower part of display
+  }
+
+  total() {
+    let result;
+    const current = parseFloat(this.currentNum);
+    const previous = parseFloat(this.previousNum);
+
+    if (isNaN(current) || isNaN(previous)) return;
+
+    switch (this.operator) {
+      case "+":
+        result = previous + current;
+        break;
+      case "-":
+        result = previous - current;
+        break;
+      case "x":
+        result = previous * current;
+        break;
+      case "/":
+        result = previous / current;
+        break;
+      case "%":
+        result = previous % current;
+        break;
+    //   case "n":
+    //     result = previous * Math.PI;
+    //     break;
+      default:
+        return;
     }
 
-    clear() {
-        //current and prev opperand = '';
-    }
+    this.currentNum = result;
+    this.opperator = undefined;
+    this.previousNum = "";
+  }
 
-    delete() {
-
-    }
-
-    appendNum(num) {
-
-    }
-
-    opperation(operator) {
-
-    }
-
-    total() {
-
-    }
-
-    updateDisplay() {
-
-    }
+  updateDisplay() {
+    this.currentValue.innerText = this.currentNum;
+    this.previousValue.innerText = this.previousNum;
+  }
 }
 
+const calculator = new Calculator(previousValue, currentValue);
 
-const calculator = new Calculator();
-const numButtons = document.querySelectorAll(".number");
-numButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        calculator.appendNum(button.innerText);
-        //calculator.updateDisplay();
-    });
+const numBtns = document.querySelectorAll(".number");
+numBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    calculator.appendNum(btn.innerText);
+    calculator.updateDisplay();
+    //updates display everytime a btn is clicked
+  });
 });
 
-const opButtons = document.querySelectorAll(".operator");
-opButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        calculator.opperation(button.innerText);
-        //calculator.updateDisplay();
-    });
+const opBtns = document.querySelectorAll(".operator");
+opBtns.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    calculator.opperation(btn.innerText);
+    calculator.updateDisplay();
+  });
 });
 
+const eqBtn = document.querySelector(".equals");
+eqBtn.addEventListener("click", (btn) => {
+  calculator.total();
+  calculator.updateDisplay();
+});
 
+const clearBtn = document.querySelector(".clear");
+clearBtn.addEventListener("click", (btn) => {
+    calculator.clear();
+    calculator.updateDisplay();
+  });
+
+const acBtn = document.querySelector(".allClear");
+acBtn.addEventListener("click", (btn) => {
+    calculator.allClear();
+    calculator.updateDisplay();
+  });
+
+
+  
 //on click we want to recieve the value either in an array or just as a number / possibly multi dimensional arr for use with order of opperation
 //once recieved I need to display each num or operator in .display
 
@@ -67,3 +130,5 @@ opButtons.forEach(button => {
 //     parentNode.appendChild(newElem);
 // };
 // appendChild('p', btn.value, display);
+
+//need 
