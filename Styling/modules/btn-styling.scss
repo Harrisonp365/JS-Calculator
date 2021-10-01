@@ -8,11 +8,12 @@
   background-color: black;
   color: white;
   font-size: 2rem;
+}
 
-  &__plus {
-    height: 6rem;
-    grid-template-areas: "btn-plus";
-    grid-row: 5 / 7;
-    grid-column: 5;
-  }
+#allClear {
+  background-color: brown;
+}
+
+#clear {
+  background-color: brown;
 }

@@ -2,37 +2,34 @@
   font-family: "Digital";
   src: url("../../Resources/digital-7.regular.ttf");
 }
-.body {
-  margin-top: 5rem;
+.calculator__container {
+  height: 50vh;
   display: flex;
-  justify-content: center;
   align-items: center;
-}
-.body--red {
-  color: blueviolet;
-  background-color: brown;
+  justify-content: center;
 }
 
 .calculator {
   display: grid;
-  justify-content: center;
-  background-color: darkgrey;
-  width: 22rem;
-  height: 19rem;
+  grid-template-columns: repeat(5, 70px);
   border-radius: 9px;
-  grid-template-columns: repeat(5, 4rem);
-  grid-template-rows: repeat(6, 3rem);
-  grid-template-areas: "display display display display display display" "btn btn btn btn btn btn" "btn btn btn btn btn btn" "btn btn btn btn btn btn-plus" "btn btn btn btn btn btn-plus";
+  background-color: gray;
+  padding: 3rem 1rem 2rem 1rem;
 }
-.calculator__display {
-  grid-area: "display";
-  grid-row: 1;
-  grid-column: 1/6;
+
+.display {
+  grid-column: span 5;
   border: 3px solid black;
+  border-radius: 9px;
   text-align: right;
   font-size: 2.5rem;
   background-color: white;
   font-family: "Digital", "Arial";
+}
+
+.previousVal {
+  padding: 0;
+  margin: 0;
 }
 
 .btn {
@@ -44,9 +41,11 @@
   color: white;
   font-size: 2rem;
 }
-.btn__plus {
-  height: 6rem;
-  grid-template-areas: "btn-plus";
-  grid-row: 5/7;
-  grid-column: 5;
+
+#allClear {
+  background-color: brown;
+}
+
+#clear {
+  background-color: brown;
 }
