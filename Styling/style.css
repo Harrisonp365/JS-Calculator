@@ -1,0 +1,57 @@
+@font-face {
+  font-family: "Digital";
+  src: url("../../Resources/digital-7.regular.ttf");
+}
+.calculator__container {
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calculator {
+  display: grid;
+  grid-template-columns: repeat(5, 70px);
+  border-radius: 9px;
+  background-color: gray;
+  padding: 3rem 1rem 2rem 1rem;
+}
+
+.display {
+  grid-column: span 5;
+  border: 3px solid black;
+  border-radius: 9px;
+  text-align: right;
+  font-size: 2.2rem;
+  background-color: white;
+  font-family: "Digital", "Arial";
+  height: 5rem;
+}
+
+.previousVal {
+  height: 2.3rem;
+  padding: 0;
+  margin: 0;
+}
+
+.currentVal {
+  height: 2.3rem;
+}
+
+.btn {
+  margin: 3px;
+  width: 4rem;
+  height: 3rem;
+  border-radius: 7px;
+  background-color: black;
+  color: white;
+  font-size: 2rem;
+}
+
+#allClear {
+  background-color: brown;
+}
+
+#clear {
+  background-color: brown;
+}
